@@ -15,7 +15,7 @@ string funk(string const* str, string const* from, string const* to) {
     size_t pos = 0;
 
 
-    while((pos = str->find(*from, pos)) != string::npos) {
+    while((pos = strchange.find(*from, pos)) != string::npos) {
 
         strchange[pos] = (*to)[0];
 
