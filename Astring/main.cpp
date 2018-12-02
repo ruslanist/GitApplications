@@ -6,22 +6,21 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+
+
 string funk(string const* str, string const* from, string const* to) {
 
-    size_t pos = str->find(from);
-    if(pos !=string::npos) {
-
-        *str[pos] = to;
-    }
-
-
-    while((pos = str->find(from, pos)) != string::npos) {
-
-        *str[pos] = to;
-
-    }
-
     string strchange = *str;
+
+    size_t pos = 0;
+
+
+    while((pos = str->find(*from, pos)) != string::npos) {
+
+        strchange[pos] = *to[0];
+
+    }
+
 
     return strchange;
 }
