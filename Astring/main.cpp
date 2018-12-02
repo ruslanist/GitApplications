@@ -6,20 +6,24 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-string funk(string const& str, string const& from, string const& to) {
+string funk(string const* str, string const* from, string const* to) {
+
+    size_t pos = str->find(from);
+    if(pos !=string::npos) {
+
+        *str[pos] = to;
+    }
 
 
-    size_t pos = string::npos;
+    while((pos = str->find(from, pos)) != string::npos) {
 
-    while((pos = str.find(from, pos)) != string::npos) {
-
-        str[pos] = to;
-
-        string strchange = str;
-
-        return strchange;
+        *str[pos] = to;
 
     }
+
+    string strchange = *str;
+
+    return strchange;
 }
 
 
@@ -40,10 +44,13 @@ int main()
      cout << "Параметр 3: Введите символ на который нужно изменить" << endl;
     cin >> to1;
 
-    string strchange = funk(str1, from1, to1);
 
 
-    cout << strchange << endl;
+    string str2 = funk(&str1, &from1, &to1);
+
+    cout << str1 << endl;
+
+    cout << str2 << endl;
 
     return 0;
 }
