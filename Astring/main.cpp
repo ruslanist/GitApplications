@@ -25,21 +25,19 @@ string funk(string const &str, char const from, char const to) {
     return strchange;
 }
 
-string trim(const string &str2, const string &from2) {
+string trim(const string &str2) {
 
-    string strchange2 = str2;
-    size_t word_began =0;
+    size_t word_began = 0;
+    size_t tmp = 0;
 
+    tmp = str2.find_first_not_of(" \n\t");
 
+            if(tmp != string::npos) {
 
-    while(word_began = strchange2.find_first_not_of(from2) != string::npos) {
+                word_began = tmp;
+            }
 
-    strchange2.substr(word_began);
-
-    }
-
-        return strchange2;
-
+            return str2.substr(word_began);
 }
 
 int main()
@@ -56,7 +54,7 @@ int main()
     cout << "Параметр 2: Введите символ который желаете заменить" << endl;
     cin >> from1;
 
-     cout << "Параметр 3: Введите символ на который нужно изменить" << endl;
+    cout << "Параметр 3: Введите символ на который нужно изменить" << endl;
     cin >> to1;
 
     string str11 = funk(str1, from1, to1);
@@ -68,16 +66,11 @@ int main()
     cout << "Функция уберающая пробеллы и табуляции в начале строк" << endl;
 
     string str2;
-    string from2;
-
 
     cout << "Введите слово с пробелами и табуляцией в начале этого слова" << endl;
     cin >> str2;
 
-    cout << "Введите табуляцию и пустые строки символом которые нужно исключить пример: \n\t" << endl;
-    cin >> from2;
-
-    string str22 = trim(str2, from2);
+    string str22 = trim(str2);
 
     cout << str2 << endl;
     cout << str22 << endl;
