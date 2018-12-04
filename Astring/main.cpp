@@ -8,16 +8,16 @@ using std::cin;
 
 
 
-string funk(string const* str, string const* from, string const* to) {
+string funk(string const &str, string const &from, string const &to) {
 
-    string strchange = *str;
+    string strchange = str;
 
     size_t pos = 0;
 
 
-    while((pos = strchange.find(*from, pos)) != string::npos) {
+    while((pos = strchange.find(from, pos)) != string::npos) {
 
-        strchange[pos] = (*to)[0];
+        strchange[pos] = to[0];
 
     }
 
@@ -45,7 +45,7 @@ int main()
 
 
 
-    string str2 = funk(&str1, &from1, &to1);
+    string str2 = funk(str1, from1, to1);
 
     cout << str1 << endl;
 
