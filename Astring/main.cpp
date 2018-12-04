@@ -8,7 +8,7 @@ using std::cin;
 
 
 
-string funk(string const &str, char const from, char const to) {
+string funk(string const &str, char from, char to) {
 
     string strchange = str;
 
@@ -28,16 +28,29 @@ string funk(string const &str, char const from, char const to) {
 string trim(const string &str2) {
 
     size_t word_began = 0;
+    size_t word_began2 = 0;
     size_t tmp = 0;
+    size_t tmp2 = 0;
+    string strCng;
+
 
     tmp = str2.find_first_not_of(" \n\t");
 
-            if(tmp != string::npos) {
+    if(tmp != string::npos) {
 
-                word_began = tmp;
-            }
+        word_began = tmp;
+    }
 
-            return str2.substr(word_began);
+    strCng = str2.substr(word_began);
+    tmp2 = strCng.find_last_not_of(" \n\t");
+
+    if(tmp2 != string::npos) {
+
+        word_began2 = tmp2;
+    }
+
+
+    return strCng.substr(word_began2);
 }
 
 int main()
@@ -65,10 +78,7 @@ int main()
 
     cout << "Функция уберающая пробеллы и табуляции в начале строк" << endl;
 
-    string str2;
-
-    cout << "Введите слово с пробелами и табуляцией в начале этого слова" << endl;
-    cin >> str2;
+    string str2 = "\n\n\n\t\t\tHello\n\n\n\t\t\t";
 
     string str22 = trim(str2);
 
