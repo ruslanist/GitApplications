@@ -8,7 +8,7 @@ using std::cin;
 
 
 
-string funk(string const &str, string const &from, string const &to) {
+string funk(string const &str, char const &from, char const &to) {
 
     string strchange = str;
 
@@ -17,7 +17,7 @@ string funk(string const &str, string const &from, string const &to) {
 
     while((pos = strchange.find(from, pos)) != string::npos) {
 
-        strchange[pos] = to[0];
+        strchange[pos] = to;
 
     }
 
@@ -25,14 +25,15 @@ string funk(string const &str, string const &from, string const &to) {
     return strchange;
 }
 
+string trim(const string &str) {}
 
 int main()
 
 {
 
     string str1;
-    string from1;
-    string to1;
+    char from1;
+    char to1;
 
     cout << " Введите строку состоящая из слов и символов" << endl;
     cin >> str1;
