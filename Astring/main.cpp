@@ -29,6 +29,7 @@ string trim(const string &str2) {
 
     size_t word_began = 0;
     size_t tmp = 0;
+    size_t tmp2 = 0;
     string strCng;
 
 
@@ -41,7 +42,9 @@ string trim(const string &str2) {
 
     strCng = str2.substr(word_began);
 
-    return strCng.substr(0, strCng.find_last_not_of(" \n\t")+1);
+    tmp2 = strCng.find_last_not_of(" \n\t");
+
+    return strCng.substr(0, (tmp2 == string::npos) ? tmp2 : tmp2+1);
 }
 
 int main()
@@ -67,7 +70,7 @@ int main()
 
     cout << str11 << endl;
 
-    cout << "Функция уберающая пробеллы и табуляции в начале строк" << endl;
+    cout << "Функция уберающая пробеллы и табуляции в начале и в конце строки" << endl;
 
     string str2 = "\n\n\n\t\t\tHello\n\n\n\t\t\t";
 
