@@ -44,9 +44,9 @@ int main()
     else
         cout << "Test 3 FAIL!" << endl;
 
-    string str2 = "How Are";
+    string str2 = "How,Are";
     string strChange4 = get_word(str2, ' ');
-    if((strChange4 == "How Are") && str2.empty()) {
+    if((strChange4 == "How,Are") && str2.empty()) {
         cout << "Test 4 OK!" << endl;
     } else {
         cout << "Test 4 FAIL!" << endl;
