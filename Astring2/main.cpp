@@ -9,21 +9,12 @@ using std::string;
 string get_word(string &str, char delim) {
 
     size_t pos =0;
-    size_t word_first =0;
 
-    pos = str.find(delim, pos);
+    pos = str.find(delim);
 
-    if(pos != string::npos) {
+    string strFirst = str.substr(0, pos);
 
-        word_first = pos;
-    } else {
-
-                cout << "В строке str нет указанного разделителя" << endl;
-           }
-
-    string strFirst = str.substr(0, word_first);
-
-    str.erase(0, word_first + 1);
+    str.erase(0, (pos == string::npos) ? pos : pos + 1);
 
     return strFirst;
 }
