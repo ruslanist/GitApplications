@@ -4,11 +4,9 @@
 #include "stringsplit.h"
 
 using std::cout;
-using std::end;
+using std::endl;
 using std::string;
 using std::vector;
-//using SpliT::get_word;
-using SpliT::split;
 
 int main()
 {
@@ -16,9 +14,9 @@ int main()
 
     vector<string> vec2;
 
-    vec2 = split(str, ' ');
+    vec2 = SpliT::split(str, ' ');
 
-    for(int i =0; i<vec.size(); i++) {
+    for(int i =0; i<vec2.size(); i++) {
 
         cout << vec2[i] << endl;
     }
