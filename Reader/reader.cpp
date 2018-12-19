@@ -2,22 +2,25 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include <stringsplit.h>
+#include <sstream>
 
 using std::cout;
 using std::endl;
 using std::string;
 using std::vector;
 using std::ifstream;
+using std::fstream;
 using std::stringstream;
 
-CSVReader::CSVReader(const string& file_path) : linestr(file_path) {}
+CSVReader::CSVReader(const string& m_file_path) : linestr(m_file_path) {}
 
-CSVReader::read() {
+vector <Iteam> CSVReader::read() {
 
-    ifstream t(file_data.txt);
+    ifstream t(linestr);
     stringstream buffer;
-    buffer << t.rdebuf();
+    buffer << t.rdbuf();
     string data = buffer.str();
 
    /*
@@ -28,7 +31,7 @@ CSVReader::read() {
   */
     Iteam obj;
 
-    string data2 = SpliT::get_word(data, '\n');
+    // string data2 = SpliT::get_word(data, '\n');
 
 
     vector<Iteam> vecitem;

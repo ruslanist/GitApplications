@@ -1,12 +1,13 @@
 #ifndef READER_H
 #define READER_H
 #include <string>
+#include <vector>
 
 using std::string;
+using std::vector;
 
 struct Iteam
 {
-    Iteam();
     string name;
     string type;
     string price;
@@ -15,7 +16,7 @@ struct Iteam
 class  Reader
 {
 public:
-     virtual Iteam read() = 0;
+     virtual vector<Iteam> read() = 0;
 };
 
 class CSVReader : public Reader {
@@ -23,9 +24,10 @@ private:
     string linestr;
 
 public:
-    CSVReader::CSVReader(const string& file_path);
+    CSVReader(const string& m_file_path);
 
-    virtual Iteam read();
+    virtual vector<Iteam> read();
 
+};
 
 #endif // READER_H
