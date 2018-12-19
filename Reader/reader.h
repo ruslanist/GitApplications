@@ -15,12 +15,17 @@ struct Iteam
 class  Reader
 {
 public:
-     virtual Iteam readerNext() = 0;
+     virtual Iteam read() = 0;
 };
 
 class CSVReader : public Reader {
+private:
+    string linestr;
+
 public:
-    virtual Iteam readerNext();
+    CSVReader::CSVReader(const string& file_path);
+
+    virtual Iteam read();
 
 
 #endif // READER_H
