@@ -1,0 +1,5 @@
+<name>Рубашка<type>Одежда<price>30
+<name>Рубашка2<type>Одежда<price>31
+<name>Рубашка3<type>Одежда<price>32
+<name>Рубашка4<type>Одежда<price>33
+<name>Тарелка<type>Посуда<price>34
