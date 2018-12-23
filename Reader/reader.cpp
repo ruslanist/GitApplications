@@ -49,7 +49,7 @@ vector <Iteam> CSVReader::read() {
 
         obj.name = vecData2[0];
         obj.type = vecData2[1];
-        obj.price = vecData2[2];
+        obj.price = SpliT::toNumber(vecData2[2]);
 
         vecitem.push_back(obj);
     }
@@ -102,7 +102,7 @@ vector<Iteam> TagReader::read() {
 
         obj2.name = word1;
         obj2.type = word2;
-        obj2.price = word3;
+        obj2.price = SpliT::toNumber(word3);
 
         vecitem2.push_back(obj2);
     }

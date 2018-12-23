@@ -10,7 +10,7 @@ struct Iteam {
 
     string name;
     string type;
-    string price;
+    double price;
 };
 
 class  Reader {
