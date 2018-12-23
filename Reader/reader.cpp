@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stringsplit.h>
 #include <sstream>
+#include<stdexcept>
 
 using std::cout;
 using std::endl;
@@ -13,6 +14,8 @@ using std::vector;
 using std::ifstream;
 using std::fstream;
 using std::stringstream;
+using std::runtime_error;
+using std::exception;
 
 CSVReader::CSVReader(const string& m_file_path) : linestr(m_file_path) {}
 
@@ -39,6 +42,11 @@ vector <Iteam> CSVReader::read() {
 
         vector<string> vecData2 = SpliT::split(vecData[i], ',');
 
+        if(vecData2.size() != 3) {
+
+            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+        }
+
         obj.name = vecData2[0];
         obj.type = vecData2[1];
         obj.price = vecData2[2];
@@ -64,12 +72,31 @@ vector<Iteam> TagReader::read() {
     for(int i=0; i<vecData2.size(); i++) {
 
         Iteam obj2;
+        string tagWord;
 
-        SpliT::get_word(vecData2[i], '>');
+        tagWord = SpliT::get_word(vecData2[i], '>');
+
+        if(tagWord != "<name") {
+
+            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+        }
+
         string word1 = SpliT::get_word(vecData2[i], '<');
-        SpliT::get_word(vecData2[i], '>');
+        tagWord = SpliT::get_word(vecData2[i], '>');
+
+        if(tagWord != "type") {
+
+            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+        }
+
         string word2 = SpliT::get_word(vecData2[i], '<');
-        SpliT::get_word(vecData2[i], '>');
+        tagWord = SpliT::get_word(vecData2[i], '>');
+
+        if(tagWord != "price") {
+
+            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+        }
+
         string word3 = vecData2[i];
 
         obj2.name = word1;
