@@ -11,6 +11,7 @@ using std::vector;
 int main()
 {
     string str = "Hello my friend";
+    const string str2 = "100.00";
 
     vector<string> vec2;
 
@@ -20,6 +21,9 @@ int main()
 
         cout << vec2[i] << endl;
     }
+
+    double str3 = SpliT::toNumber(str2);
+    cout << str3 << endl;
 
     return 0;
 }

@@ -12,6 +12,8 @@ string get_word(string &str, char delim);
 
 vector<string> split(const string& str, char delim);
 
+double toNumber(const string & strVal);
+
 }
 
 #endif // STRINGSPLIT_H

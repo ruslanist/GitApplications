@@ -1,9 +1,12 @@
 #include <string>
 #include <vector>
 #include "stringsplit.h"
+#include <fstream>
+#include <sstream>
 
 using std::vector;
 using std::string;
+using std::stringstream;
 
 string SpliT::get_word(string &str, char delim) {
 
@@ -33,4 +36,14 @@ vector<string> SpliT::split(const string& str, char delim) {
     }
 
     return vec;
+}
+
+double SpliT::toNumber(const string &strVal) {
+
+    stringstream stream(strVal);
+    double dVal;
+
+    stream >> dVal;
+
+    return dVal;
 }
