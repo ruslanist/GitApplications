@@ -35,7 +35,7 @@ vector <Iteam> CSVReader::read() {
 
     for(int i = 0; i<vecData.size(); i++) {
 
-        cout << vecData[i] << endl;
+        cout << "Вывод 4 строки Класса CSVReader" << " " << vecData[i] << endl;
 
         vector<string> vecData2 = SpliT::split(vecData[i], ',');
 

@@ -21,16 +21,20 @@ int main() {
 
     for(int i=0; i<finalVec.size(); i++) {
 
-        cout << finalVec[i].name << endl;
-        cout << finalVec[i].type << endl;
-        cout << finalVec[i].price << endl;
+        cout << "Вывод  в main() полей Класса CSVReader" << endl;
+        cout << "Название" << " " << finalVec[i].name << endl;
+        cout << "Тип" << " " << finalVec[i].type << endl;
+        cout << "Цена" << " " << finalVec[i].price << endl;
+        cout << " " << endl;
     }
 
     for(int i=0; i<finalVec2.size(); i++) {
 
-        cout << finalVec2[i].name << endl;
-        cout << finalVec2[i].type << endl;
-        cout << finalVec2[i].price << endl;
+        cout << "Вывод  в main() полей Класса TagReader" << endl;
+        cout << "Название" << " " << finalVec2[i].name << endl;
+        cout << "Тип" << " " << finalVec2[i].type << endl;
+        cout << "Цена" << " " << finalVec2[i].price << endl;
+        cout << " " << endl;
     }
 
     return 0;
