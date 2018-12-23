@@ -71,6 +71,7 @@ vector<Iteam> TagReader::read() {
 
     for(int i=0; i<vecData2.size(); i++) {
 
+        string tmp = vecData2[i];
         Iteam obj2;
         string tagWord;
 
@@ -78,7 +79,7 @@ vector<Iteam> TagReader::read() {
 
         if(tagWord != "<name") {
 
-            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+            throw runtime_error("Syntax error of file.txt. Validation is failed " + tmp);
         }
 
         string word1 = SpliT::get_word(vecData2[i], '<');
@@ -86,7 +87,7 @@ vector<Iteam> TagReader::read() {
 
         if(tagWord != "type") {
 
-            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+            throw runtime_error("Syntax error of file.txt. Validation is failed " + tmp);
         }
 
         string word2 = SpliT::get_word(vecData2[i], '<');
@@ -94,7 +95,7 @@ vector<Iteam> TagReader::read() {
 
         if(tagWord != "price") {
 
-            throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
+            throw runtime_error("Syntax error of file.txt. Validation is failed " + tmp);
         }
 
         string word3 = vecData2[i];
