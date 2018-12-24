@@ -42,14 +42,15 @@ vector <Iteam> CSVReader::read() {
 
         vector<string> vecData2 = SpliT::split(vecData[i], ',');
 
-        if(vecData2.size() != 3) {
+        if(vecData2.size() != 4) {
 
             throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
         }
 
         obj.name = vecData2[0];
         obj.type = vecData2[1];
-        obj.price = SpliT::toNumber(vecData2[2]);
+        obj.price = toNumber2<double>(vecData2[2]);
+        obj.qty = toNumber2<int>(vecData2[3]);
 
         vecitem.push_back(obj);
     }
@@ -98,11 +99,20 @@ vector<Iteam> TagReader::read() {
             throw runtime_error("Syntax error of file.txt. Validation is failed " + tmp);
         }
 
-        string word3 = vecData2[i];
+        string word3 = SpliT::get_word(vecData2[i], '<');
+        tagWord = SpliT::get_word(vecData2[i], '>');
+
+        if(tagWord != "qty") {
+
+            throw runtime_error("Syntax error of file.txt. Validation is failed " + tmp);
+        }
+
+        string word4 = vecData2[i];
 
         obj2.name = word1;
         obj2.type = word2;
-        obj2.price = SpliT::toNumber(word3);
+        obj2.price = toNumber2<double>(word3);
+        obj2.qty = toNumber2<int>(word4);
 
         vecitem2.push_back(obj2);
     }

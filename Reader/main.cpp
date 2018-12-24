@@ -30,6 +30,7 @@ int main() {
             cout << "Название" << " " << finalVec[i].name << endl;
             cout << "Тип" << " " << finalVec[i].type << endl;
             cout << "Цена" << " " << finalVec[i].price << endl;
+            cout << "Оборот товара" << " " << finalVec[i].qty << endl;
             cout << " " << endl;
         }
 
@@ -39,6 +40,7 @@ int main() {
             cout << "Название" << " " << finalVec2[i].name << endl;
             cout << "Тип" << " " << finalVec2[i].type << endl;
             cout << "Цена" << " " << finalVec2[i].price << endl;
+            cout << "Оборот товара" << " " << finalVec2[i].qty << endl;
             cout << " " << endl;
         }
     }
