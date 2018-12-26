@@ -36,6 +36,14 @@ struct Iteam {
 class  Reader {
 public:
      virtual vector<Iteam> read() = 0;
+
+    enum {
+        name_indx,
+        type_indx,
+        price_indx,
+        qty_indx
+    };
+
 };
 
 class CSVReader : public Reader {

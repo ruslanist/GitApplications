@@ -3,10 +3,13 @@
 #include "stringsplit.h"
 #include <fstream>
 #include <sstream>
+#include <exception>
 
 using std::vector;
 using std::string;
 using std::stringstream;
+using std::exception;
+using std::runtime_error;
 
 string SpliT::get_word(string &str, char delim) {
 
@@ -47,3 +50,41 @@ double SpliT::toNumber(const string &strVal) {
 
     return dVal;
 }
+
+string SpliT::getFileExt(const string &input_path) {
+
+    string patch = input_path;
+
+    size_t pos = 0;
+
+    pos = patch.rfind(".");
+
+    string ext = patch.substr(0, pos);
+
+    if(pos == string::npos) {
+
+        throw runtime_error("Fail to get extenstion for file: " + input_path);
+    }
+
+    return ext;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

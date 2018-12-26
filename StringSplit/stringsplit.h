@@ -14,6 +14,8 @@ vector<string> split(const string& str, char delim);
 
 double toNumber(const string & strVal);
 
+string getFileExt(const string &input_path);
+
 }
 
 #endif // STRINGSPLIT_H

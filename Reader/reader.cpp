@@ -47,10 +47,10 @@ vector <Iteam> CSVReader::read() {
             throw runtime_error("Syntax error of file.txt. Validation is failed" + vecData2[i]);
         }
 
-        obj.name = vecData2[0];
-        obj.type = vecData2[1];
-        obj.price = toNumber2<double>(vecData2[2]);
-        obj.qty = toNumber2<int>(vecData2[3]);
+        obj.name = vecData2[name_indx];
+        obj.type = vecData2[type_indx];
+        obj.price = toNumber2<double>(vecData2[price_indx]);
+        obj.qty = toNumber2<int>(vecData2[qty_indx]);
 
         vecitem.push_back(obj);
     }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "reader.h"
+#include "inventory.h"
 #include <vector>
 #include <iostream>
 #include<stdexcept>
@@ -15,8 +16,9 @@ int main() {
 
     try {
 
-        CSVReader objTxt("/home/ruslan/GitHub/GitApplications/File_of_Prodject/Reder/test.txt");
-        TagReader objTxt2("/home/ruslan/GitHub/GitApplications/File_of_Prodject/Reder/test2.txt");
+        CSVReader objTxt("/home/ruslan/GitHub/GitApplications/File_of_Prodject/Reder/test.cvs");
+        TagReader objTxt2("/home/ruslan/GitHub/GitApplications/File_of_Prodject/Reder/test2.tag");
+        Inventory objTxt3("/home/ruslan/GitHub/GitApplications/File_of_Prodject/Reder/test2.tag");
 
         vector<Iteam> finalVec;
         vector<Iteam> finalVec2;
@@ -43,6 +45,10 @@ int main() {
             cout << "Оборот товара" << " " << finalVec2[i].qty << endl;
             cout << " " << endl;
         }
+
+        double sum = objTxt3.getVolume();
+        cout << "Оборот в долорах продонного товара составляет = " << " " << sum << endl;
+
     }
     catch(exception const& erEx) {
 

@@ -10,6 +10,13 @@ class Inventory {
     Reader* reader;
     vector<Iteam> items;
 
+public:
+    Inventory(const string& input_path);
+
+    double getVolume();
+
+    void printStat();
+
 };
 
 #endif // INVENTORY_H
