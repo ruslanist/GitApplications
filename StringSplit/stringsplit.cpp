@@ -59,12 +59,12 @@ string SpliT::getFileExt(const string &input_path) {
 
     pos = patch.rfind(".");
 
-    string ext = patch.substr(0, pos);
-
     if(pos == string::npos) {
 
         throw runtime_error("Fail to get extenstion for file: " + input_path);
     }
+
+    string ext = patch.substr(pos);
 
     return ext;
 }
