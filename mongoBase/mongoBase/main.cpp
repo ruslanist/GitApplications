@@ -22,6 +22,12 @@ int main() {
        cout << cursor->next().toString() << endl;
        mongo::BSONElement name =  cursor->next().getField("adjusted_close");
        cout << name << endl;
+       adjusted_close.push_back(name.Double());
+    }
+
+    for(int i=0; i<adjusted_close.size(); i++) {
+
+        cout << "Вектор =" << adjusted_close[i] << endl;
     }
 
   } catch( const mongo::DBException &e ) {
