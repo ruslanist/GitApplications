@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "mongo/client/dbclient.h"
 #include <vector>
+#include "exchangeanalyst.h"
 
 using namespace std;
 using namespace bson;
@@ -19,16 +20,24 @@ int main() {
     cout << "count:" << c.count("us_stocks.ZYME.US") << endl;
     auto_ptr<mongo::DBClientCursor> cursor = c.query("us_stocks.ZYME.US", mongo::BSONObj());
     while (cursor->more()) {
-       cout << cursor->next().toString() << endl;
-       mongo::BSONElement name =  cursor->next().getField("adjusted_close");
+       auto p = cursor->next();
+       cout << p.toString() << endl;
+       mongo::BSONElement name =  p.getField("adjusted_close");
        cout << name << endl;
        adjusted_close.push_back(name.Double());
     }
+
+    cout << adjusted_close.size() << endl;
 
     for(int i=0; i<adjusted_close.size(); i++) {
 
         cout << "Вектор =" << adjusted_close[i] << endl;
     }
+
+    size_t range_Len = 10; // Len of first part
+    size_t breakout_Len = 20; // Len of second part
+
+    exchangeAnalyst(adjusted_close.data(), range_Len, breakout_Len);
 
   } catch( const mongo::DBException &e ) {
     std::cout << "caught " << e.what() << std::endl;
