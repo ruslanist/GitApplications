@@ -9,7 +9,7 @@
 
 using namespace  std;
 
-HttpQuery::HttpQuery(const string &url) : curl(curl_easy_init())  {
+HttpQuery::HttpQuery(const string &init_url) : curl(curl_easy_init(), url(init_url))  {
 
         //Set remote URL.
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());

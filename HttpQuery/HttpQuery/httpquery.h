@@ -14,12 +14,13 @@ class HttpQuery {
 
 private:
 
+    string url;
     CURL* curl;
     unique_ptr<string> httpData;
 
 public:
 
-    HttpQuery(const string &url);
+    HttpQuery(const string &init_url);
     ~HttpQuery();
 
     static size_t callback(const char* in, size_t size, size_t num, string* out);

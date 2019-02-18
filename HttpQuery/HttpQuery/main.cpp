@@ -13,9 +13,11 @@ int main()
 
         string urlobj("https://www.google.com/");
 
-        HttpQuery url(&url);
+        HttpQuery urlobj(url);
 
-        cout << url.getContent() << endl;
+        urlobj.downloadHttp();
+
+        cout << urlobj.getContent() << endl;
 
     }
     catch(exception const& erEx) {
