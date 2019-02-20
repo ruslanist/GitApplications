@@ -7,6 +7,7 @@
 #include <string>
 
 #include <curl/curl.h>
+#include <jsoncpp/json/json.h>
 
 using namespace  std;
 
@@ -29,6 +30,6 @@ public:
     string getContent();
 
 
-}
+};
 
 #endif // HTTPQUERY_H

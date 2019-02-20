@@ -6,10 +6,11 @@
 #include "httpquery.h"
 
 #include <curl/curl.h>
+#include <jsoncpp/json/json.h>
 
 using namespace  std;
 
-HttpQuery::HttpQuery(const string &init_url) : curl(curl_easy_init(), url(init_url))  {
+HttpQuery::HttpQuery(const string &init_url) : curl(curl_easy_init()), url(init_url), httpData(new string()) {
 
         //Set remote URL.
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -24,10 +25,6 @@ HttpQuery::HttpQuery(const string &init_url) : curl(curl_easy_init(), url(init_u
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
         // Response information.
-        long httpCode(0);
-        httpData(new string());
-
-        // Hook up data handling function.
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
 
         // Hook up data container (will be passed as the last parameter to the
@@ -36,7 +33,7 @@ HttpQuery::HttpQuery(const string &init_url) : curl(curl_easy_init(), url(init_u
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, httpData.get());
 }
 
-static size_t HttpQuery::callback(const char* in, size_t size, size_t num, string* out) {
+size_t HttpQuery::callback(const char* in, size_t size, size_t num, string* out) {
 
     const size_t totalBytes(size * num);
     out->append(in, totalBytes);
@@ -44,6 +41,9 @@ static size_t HttpQuery::callback(const char* in, size_t size, size_t num, strin
 }
 
 void HttpQuery::downloadHttp() {
+
+    long httpCode(0);
+    // Hook up data handling function.
 
     // Run our HTTP GET command, capture the HTTP response code, and clean up.
         curl_easy_perform(curl);
@@ -60,7 +60,7 @@ string  HttpQuery::getContent() {
     return *httpData;
 }
 
-~HttpQuery() {
+HttpQuery::~HttpQuery() {
 
     curl_easy_cleanup(curl);
 }
