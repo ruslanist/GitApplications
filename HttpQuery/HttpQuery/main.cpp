@@ -13,7 +13,7 @@ int main()
 
     try {
 
-        string url("https://www.google.com/");
+        string url("https://eodhistoricaldata.com/api/exchanges/US?api_token=" API_KEY "&fmt=json");
         HttpQuery urlobj(url);
 
         urlobj.downloadHttp();
