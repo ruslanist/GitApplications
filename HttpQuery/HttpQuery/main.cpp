@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <stdexcept>
+#include <set>
 
 #include "httpquery.h"
 
@@ -34,16 +35,18 @@ int main()
            std::cout << "\nJSON data received:" << std::endl;
            //std::cout << jsonData.toStyledString() << std::endl;
 
-            cout << "JJJJJJJJJJJJJJJJJJJJJJJJJSSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOONNNNNNNNNNN" << endl;
+            std::set<string> exchange;
 
-            //const Json::Value Exchange = jsonData["Exchange"];
             for(int index = 0; index < jsonData.size(); ++index) {
 
-              cout << jsonData[index]["Exchange"].asString() << endl;
+              exchange.insert( jsonData[index]["Exchange"].asString() );
+
             }
 
-            //yourlib::setIndentLength( root["my-indent"].get("length", 3).asInt() );
-            //yourlib::setIndentUseSpace( root["my-indent"].get("use_space", true).asBool() );
+            for(auto i : exchange) {
+
+                cout << i << endl;
+            }
 
          }
          else
