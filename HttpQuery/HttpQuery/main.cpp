@@ -2,7 +2,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include<stdexcept>
+#include <stdexcept>
+
 #include "httpquery.h"
 
 #include <curl/curl.h>
@@ -27,13 +28,25 @@ int main()
 
          string httpStr = urlobj.getContent();
 
-         std::cout << httpStr << std::endl;
-
          if (jsonReader.parse(httpStr, jsonData))
          {
-            std::cout << "Successfully parsed JSON data" << std::endl;
-            std::cout << "\nJSON data received:" << std::endl;
-            std::cout << jsonData.toStyledString() << std::endl;
+           std::cout << "Successfully parsed JSON data" << std::endl;
+           std::cout << "\nJSON data received:" << std::endl;
+           std::cout << jsonData.toStyledString() << std::endl;
+
+            //string Exchange = jsonData.get("Exchange").asString();
+
+            cout << "JJJJJJJJJJJJJJJJJJJJJJJJJSSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOONNNNNNNNNNN" << endl;
+
+            const Json::Value Exchange = jsonData["Exchange"];
+            for(int index = 0; index < Exchange.size(); ++index) {
+
+              Exchange[index].asString();
+            }
+
+            //yourlib::setIndentLength( root["my-indent"].get("length", 3).asInt() );
+            //yourlib::setIndentUseSpace( root["my-indent"].get("use_space", true).asBool() );
+
          }
          else
          {
