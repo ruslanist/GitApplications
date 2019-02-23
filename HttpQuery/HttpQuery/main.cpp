@@ -32,16 +32,14 @@ int main()
          {
            std::cout << "Successfully parsed JSON data" << std::endl;
            std::cout << "\nJSON data received:" << std::endl;
-           std::cout << jsonData.toStyledString() << std::endl;
-
-            //string Exchange = jsonData.get("Exchange").asString();
+           //std::cout << jsonData.toStyledString() << std::endl;
 
             cout << "JJJJJJJJJJJJJJJJJJJJJJJJJSSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOONNNNNNNNNNN" << endl;
 
-            const Json::Value Exchange = jsonData["Exchange"];
-            for(int index = 0; index < Exchange.size(); ++index) {
+            //const Json::Value Exchange = jsonData["Exchange"];
+            for(int index = 0; index < jsonData.size(); ++index) {
 
-              Exchange[index].asString();
+              cout << jsonData[index]["Exchange"].asString() << endl;
             }
 
             //yourlib::setIndentLength( root["my-indent"].get("length", 3).asInt() );
