@@ -35,7 +35,7 @@ int main()
          {
            cout << "Successfully parsed JSON data" << endl;
            cout << "\nJSON data received:" << endl;
-           //cout << jsonData.toStyledString() << endl;
+           cout << jsonData.toStyledString() << endl;
 
             set<string> exchangeCheck;
             exchangeCheck.insert("AMEX");
@@ -71,19 +71,7 @@ int main()
 
                         cout << "Successfully parsed JSON next_data" << endl;
                         cout << "\nJSON next_data received:" << endl;
-                        //cout << next_jsonData.toStyledString() << endl;
-
-                        set<string> nextExchange;
-
-                        for(int index = 0; index < next_jsonData.size(); ++index) {
-
-                            nextExchange.insert( next_jsonData[index]["Code"].asString() );
-                        }
-
-                        for(auto i : nextExchange) {
-
-                            cout << i << endl;
-                        }
+                        cout << next_jsonData.toStyledString() << endl;
 
                     }
 
