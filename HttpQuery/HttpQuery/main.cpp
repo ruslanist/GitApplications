@@ -29,15 +29,13 @@ int main()
          Json::Value jsonData;
          Json::Reader jsonReader;
 
-         string httpStr = urlobj.getContent();
+         string httpStr(urlobj.getContent());
 
          if (jsonReader.parse(httpStr, jsonData))
          {
            cout << "Successfully parsed JSON data" << endl;
            cout << "\nJSON data received:" << endl;
-           cout << jsonData.toStyledString() << endl;
-
-            set<string> exchCode;
+           //cout << jsonData.toStyledString() << endl;
 
             set<string> exchangeCheck;
             exchangeCheck.insert("AMEX");
@@ -56,7 +54,39 @@ int main()
 
                 if( exchangeCheck.count(jsonData[index]["Exchange"].asString()) ) {
 
-                     cout << jsonData[index]["Code"].asString() << endl;
+                    string val_ofCode( jsonData[index]["Code"].asString() );
+
+                    string nextUrl("https://eodhistoricaldata.com/api/eod/" + val_ofCode + ".US?api_token=" API_KEY "&period=d&order=a&from=2017-01-01&fmt=json");
+
+                    HttpQuery nextUrlobj(nextUrl);
+
+                    nextUrlobj.downloadHttp();
+
+                    Json::Value next_jsonData;
+                    Json::Reader next_jsonReader;
+
+                    string next_httpStr(nextUrlobj.getContent());
+
+                    if(next_jsonReader.parse(next_httpStr, next_jsonData)) {
+
+                        cout << "Successfully parsed JSON next_data" << endl;
+                        cout << "\nJSON next_data received:" << endl;
+                        //cout << next_jsonData.toStyledString() << endl;
+
+                        set<string> nextExchange;
+
+                        for(int index = 0; index < next_jsonData.size(); ++index) {
+
+                            nextExchange.insert( next_jsonData[index]["Code"].asString() );
+                        }
+
+                        for(auto i : nextExchange) {
+
+                            cout << i << endl;
+                        }
+
+                    }
+
                 }
 
             }
