@@ -10,6 +10,8 @@
 #include <curl/curl.h>
 #include <jsoncpp/json/json.h>
 
+using namespace std;
+
 int main()
 {
 
@@ -20,7 +22,7 @@ int main()
 
         urlobj.downloadHttp();
 
-         std::cout << "\nGot successful response from " << url << std::endl;
+         //cout << "\nGot successful response from " << url << std::endl;
 
          // Response looks good - done using Curl now.  Try to parse the results
          // and print them out.
@@ -31,28 +33,39 @@ int main()
 
          if (jsonReader.parse(httpStr, jsonData))
          {
-           std::cout << "Successfully parsed JSON data" << std::endl;
-           std::cout << "\nJSON data received:" << std::endl;
-           //std::cout << jsonData.toStyledString() << std::endl;
+           cout << "Successfully parsed JSON data" << endl;
+           cout << "\nJSON data received:" << endl;
+           cout << jsonData.toStyledString() << endl;
 
-            std::set<string> exchange;
+            set<string> exchCode;
+
+            set<string> exchangeCheck;
+            exchangeCheck.insert("AMEX");
+            exchangeCheck.insert("ASX");
+            exchangeCheck.insert("BATS");
+            exchangeCheck.insert("CSE");
+            exchangeCheck.insert("IEX");
+            exchangeCheck.insert("NASDAQ");
+            exchangeCheck.insert("NYSE");
+            exchangeCheck.insert("NYSE ARCA");
+            exchangeCheck.insert("NYSE MKT");
+            exchangeCheck.insert("US");
+
 
             for(int index = 0; index < jsonData.size(); ++index) {
 
-              exchange.insert( jsonData[index]["Exchange"].asString() );
+                if( exchangeCheck.count(jsonData[index]["Exchange"].asString()) ) {
 
-            }
+                     cout << jsonData[index]["Code"].asString() << endl;
+                }
 
-            for(auto i : exchange) {
-
-                cout << i << endl;
             }
 
          }
          else
          {
-             std::cout << "Could not parse HTTP data as JSON" << std::endl;
-             std::cout << "HTTP data was:\n" << httpStr << std::endl;
+             cout << "Could not parse HTTP data as JSON" << endl;
+             cout << "HTTP data was:\n" << httpStr << endl;
              return 1;
          }
     }
