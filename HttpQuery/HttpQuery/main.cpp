@@ -9,13 +9,20 @@
 
 #include <curl/curl.h>
 #include <jsoncpp/json/json.h>
+#include "mongo/client/dbclient.h"
 
 using namespace std;
+using namespace mongo;
 
 int main()
 {
 
     try {
+
+        mongo::DBClientConnection c;
+        c.connect("localhost");
+
+        std::cout << "connected ok" << std::endl;
 
         string url("https://eodhistoricaldata.com/api/exchanges/US?api_token=" API_KEY "&fmt=json");
         HttpQuery urlobj(url);
@@ -35,7 +42,7 @@ int main()
          {
            cout << "Successfully parsed JSON data" << endl;
            cout << "\nJSON data received:" << endl;
-           cout << jsonData.toStyledString() << endl;
+           //cout << jsonData.toStyledString() << endl;
 
             set<string> exchangeCheck;
             exchangeCheck.insert("AMEX");
