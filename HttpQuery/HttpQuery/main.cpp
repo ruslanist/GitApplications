@@ -78,10 +78,31 @@ int main()
 
                         cout << "Successfully parsed JSON next_data" << endl;
                         cout << "\nJSON next_data received:" << endl;
-                        cout << next_jsonData.toStyledString() << endl;
+                        //cout << next_jsonData.toStyledString() << endl;
 
+
+                        BSONObjBuilder bil;
+
+                        for(int index2 = 0; index2 < next_jsonData.size(); ++index2) {
+
+                            bil.append("Close", next_jsonData[index2]["close"].asString());
+                            bil.append("High", next_jsonData[index2]["high"].asString());
+                            bil.append("Low", next_jsonData[index2]["low"].asString());
+                            bil.append("Open", next_jsonData[index2]["open"].asString());
+
+                            BSONObj p = bil.obj();
+
+                            c.insert("tutorial.exchange", p);
+
+                            cout << "count:" << c.count("tutorial.exchange") << endl;
+                            auto_ptr<DBClientCursor> cursor =
+                            c.query("tutorial.exchange", BSONObj());
+
+                            while (cursor->more()) {
+                               cout << cursor->next().toString() << endl;
+                            }
+                        }
                     }
-
                 }
 
             }
