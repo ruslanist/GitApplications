@@ -41,13 +41,19 @@ size_t HttpQuery::callback(const char* in, size_t size, size_t num, string* out)
 }
 
 void HttpQuery::downloadHttp() {
-
+cout << "3333333333333333333333333" << endl;
     long httpCode(0);
+    cout << "3333333333333333333333333" << endl;
     // Hook up data handling function.
 
     // Run our HTTP GET command, capture the HTTP response code, and clean up.
         curl_easy_perform(curl);
+        cout << "3333333333333333333333333" << endl;
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
+
+        cout << "3333333333333333333333333" << endl;
+
+
 
         if (httpCode != 200) {
 

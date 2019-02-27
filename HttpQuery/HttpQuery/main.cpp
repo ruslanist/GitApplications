@@ -27,7 +27,11 @@ int main()
         string url("https://eodhistoricaldata.com/api/exchanges/US?api_token=" API_KEY "&fmt=json");
         HttpQuery urlobj(url);
 
+        cout << "111" << endl;
+
         urlobj.downloadHttp();
+
+        cout << "222222222222222222222222" << endl;
 
          //cout << "\nGot successful response from " << url << std::endl;
 
@@ -37,13 +41,13 @@ int main()
          Json::Reader jsonReader;
 
          string httpStr(urlobj.getContent());
-
+            cout << "222" << endl;
          if (jsonReader.parse(httpStr, jsonData))
          {
            cout << "Successfully parsed JSON data" << endl;
            cout << "\nJSON data received:" << endl;
            //cout << jsonData.toStyledString() << endl;
-
+             cout << "333" << endl;
             set<string> exchangeCheck;
             exchangeCheck.insert("AMEX");
             exchangeCheck.insert("ASX");
@@ -55,7 +59,7 @@ int main()
             exchangeCheck.insert("NYSE ARCA");
             exchangeCheck.insert("NYSE MKT");
             exchangeCheck.insert("US");
-
+             cout << "444" << endl;
 
             for(int index = 0; index < jsonData.size(); ++index) {
 
@@ -80,25 +84,33 @@ int main()
                         cout << "\nJSON next_data received:" << endl;
                         //cout << next_jsonData.toStyledString() << endl;
 
-
+                        cout << "1" << endl;
                         BSONObjBuilder bil;
 
                         for(int index2 = 0; index2 < next_jsonData.size(); ++index2) {
 
+                            cout << "2" << endl;
                             bil.append("Close", next_jsonData[index2]["close"].asString());
                             bil.append("High", next_jsonData[index2]["high"].asString());
                             bil.append("Low", next_jsonData[index2]["low"].asString());
                             bil.append("Open", next_jsonData[index2]["open"].asString());
 
+                            cout << "3" << endl;
                             BSONObj p = bil.obj();
 
                             c.insert("tutorial.exchange", p);
 
+                            cout << "4" << endl;
                             cout << "count:" << c.count("tutorial.exchange") << endl;
+
+                            cout << "5" << endl;
                             auto_ptr<DBClientCursor> cursor =
                             c.query("tutorial.exchange", BSONObj());
 
+                            cout << "6" << endl;
                             while (cursor->more()) {
+
+                                cout << "7" << endl;
                                cout << cursor->next().toString() << endl;
                             }
                         }
