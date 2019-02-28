@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <set>
+#include <time.h>
 
 #include "httpquery.h"
 
@@ -21,6 +22,7 @@ int main()
 
         mongo::DBClientConnection c;
         c.connect("localhost");
+        mongo::client::initialize();
 
         std::cout << "connected ok" << std::endl;
 
@@ -89,15 +91,27 @@ int main()
 
                             BSONObjBuilder bil;
 
+                            string datE = next_jsonData[index2]["date"].asString();
+
+                            struct tm tim;
+
+                            istringstream timE(datE);
+
+                            timE >> get_time(&tim, "%Y:%m:%d");
+
+                            time_t time = mktime(&tim);
+
+
                             bil.append("Close", next_jsonData[index2]["close"].asString());
                             bil.append("High", next_jsonData[index2]["high"].asString());
                             bil.append("Low", next_jsonData[index2]["low"].asString());
                             bil.append("Open", next_jsonData[index2]["open"].asString());
+                            bil.appendTimeT("_id", time);
 
                             BSONObj p = bil.obj();
                             cout << "ONE222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 
-                            c.insert("tutorial.exchange", p);
+                            c.insert("stocks." + val_ofCode, p);
                             cout << "ONE33333333333333333!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 
                             cout << "count:" << c.count("tutorial.exchange") << endl;
@@ -123,7 +137,7 @@ int main()
              cout << "Enter to ELSE" << endl;
              cout << "Could not parse HTTP data as JSON" << endl;
              cout << "Error: " << jsonReader.getFormatedErrorMessages() << endl;
-             cout << "HTTP data was:\n" << httpStr << endl;
+             //cout << "HTTP data was:\n" << httpStr << endl;
 
              return 1;
          }
