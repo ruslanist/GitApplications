@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <set>
 #include <time.h>
+#include <iomanip>
 
 #include "httpquery.h"
 
@@ -33,7 +34,7 @@ int main()
 
          //cout << "\nGot successful response from " << url << std::endl;
 
-         // Response looks good - done using Curl now.  Try to parse the results
+         // Response looks good - done using Curl now.  Try to parse the resuhttps://github.com/ruslanist/GitApplications/commit/694f3357910ac3c9200446f1fe41f6f1452ae685lts
          // and print them out.
          Json::Value jsonData;
          Json::Reader jsonReader;
@@ -97,7 +98,7 @@ int main()
 
                             istringstream timE(datE);
 
-                            timE >> get_time(&tim, "%Y:%m:%d");
+                            timE >> get_time(&tim, "%Y-%m-%d");
 
                             time_t time = mktime(&tim);
 
