@@ -18,6 +18,21 @@ int main() {
 
     vector<double> adjusted_close;
 
+    auto allCollectDB = c.getCollectionNames("stocks");
+
+    auto_ptr<DBClientCursor> cursor = c.query("stocks." + allCollectDB, BSONObj());
+
+    while (cursor->more()) {
+
+       cout << cursor->next().toString() << endl;
+    }
+
+
+    //for(auto item : allCollectDB) {  cout << "count:" << c.count("stocks." + item) << endl; }
+
+
+    cout << "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
+
     cout << "count:" << c.count("us_stocks.ZYME.US") << endl;
     auto_ptr<mongo::DBClientCursor> cursor = c.query("us_stocks.ZYME.US", mongo::BSONObj());
     while (cursor->more()) {
