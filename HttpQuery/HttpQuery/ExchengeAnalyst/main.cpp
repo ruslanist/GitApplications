@@ -24,19 +24,25 @@ int main() {
 
     auto_ptr<DBClientCursor> cursor = c.query("stocks." + item, BSONObj());
 
+    vector<double> exchengClose;
+
         while (cursor->more()) {
 
-        cout << "я тут" << endl;
+            // cout << "я тут" << endl;
             BSONObj p2 = cursor->next();
 
-            //cout << "Date" << p2.getField("Date").number() << endl;
-            //cout << "Open" << p2.getField("Ooen").number() << endl;
+            //cout << "Open" << p2.getField("Open").number() << endl;
             //cout << "High" << p2.getField("High").number() << endl;
             //cout << "Low" << p2.getField("Low").number() << endl;
-            cout << "Close" << p2.getField("Close").number() << endl;
 
-            cout << "Следующая дата" << endl;
+            exchengClose.push_back(p2.getField("Close").number());
 
+            for(int i =0; i < exchengClose.size(); i++) {
+
+                cout << exchengClose[i] << endl;
+            }
+
+            //cout << "Следующая дата" << endl;
             cout << p2.toString() << endl;
         }
     }
