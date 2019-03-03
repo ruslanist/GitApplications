@@ -103,24 +103,19 @@ int main()
                             time_t time = mktime(&tim);
 
 
-                            bil.append("Close", next_jsonData[index2]["close"].asString());
-                            bil.append("High", next_jsonData[index2]["high"].asString());
-                            bil.append("Low", next_jsonData[index2]["low"].asString());
-                            bil.append("Open", next_jsonData[index2]["open"].asString());
+                            bil.append("Close", next_jsonData[index2]["close"].asDouble());
+                            bil.append("High", next_jsonData[index2]["high"].asDouble());
+                            bil.append("Low", next_jsonData[index2]["low"].asDouble());
+                            bil.append("Open", next_jsonData[index2]["open"].asDouble());
                             bil.appendTimeT("_id", time);
 
                             BSONObj p = bil.obj();
-                            cout << "ONE222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 
                             c.insert("stocks." + val_ofCode, p);
-                            cout << "ONE33333333333333333!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 
-                            cout << "count:" << c.count("tutorial.exchange") << endl;
-                            cout << "ONE444444444444!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                            cout << "count:" << c.count("stocks." + val_ofCode) << endl;
 
-                            auto_ptr<DBClientCursor> cursor = c.query("tutorial.exchange", BSONObj());
-
-                            cout << "ONE55555555555555555555555555!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                            auto_ptr<DBClientCursor> cursor = c.query("stocks." + val_ofCode, BSONObj());
 
                             while (cursor->more()) {
 

@@ -20,11 +20,25 @@ int main() {
 
     auto allCollectDB = c.getCollectionNames("stocks");
 
-    auto_ptr<DBClientCursor> cursor = c.query("stocks." + allCollectDB, BSONObj());
+    for(auto item : allCollectDB) {
 
-    while (cursor->more()) {
+    auto_ptr<DBClientCursor> cursor = c.query("stocks." + item, BSONObj());
 
-       cout << cursor->next().toString() << endl;
+        while (cursor->more()) {
+
+        cout << "я тут" << endl;
+            BSONObj p2 = cursor->next();
+
+            //cout << "Date" << p2.getField("Date").number() << endl;
+            //cout << "Open" << p2.getField("Ooen").number() << endl;
+            //cout << "High" << p2.getField("High").number() << endl;
+            //cout << "Low" << p2.getField("Low").number() << endl;
+            cout << "Close" << p2.getField("Close").number() << endl;
+
+            cout << "Следующая дата" << endl;
+
+            cout << p2.toString() << endl;
+        }
     }
 
 
@@ -60,7 +74,3 @@ int main() {
   }
   return EXIT_SUCCESS;
 }
-
-
-
-
