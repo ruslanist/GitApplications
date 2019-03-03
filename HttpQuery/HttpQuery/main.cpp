@@ -32,17 +32,17 @@ int main()
 
         urlobj.downloadHttp();
 
-         //cout << "\nGot successful response from " << url << std::endl;
+        //cout << "\nGot successful response from " << url << std::endl;
 
-         // Response looks good - done using Curl now.  Try to parse the resuhttps://github.com/ruslanist/GitApplications/commit/694f3357910ac3c9200446f1fe41f6f1452ae685lts
-         // and print them out.
-         Json::Value jsonData;
-         Json::Reader jsonReader;
+        // Response looks good - done using Curl now.  Try to parse the resuhttps://github.com/ruslanist/GitApplications/commit/694f3357910ac3c9200446f1fe41f6f1452ae685lts
+        // and print them out.
+        Json::Value jsonData;
+        Json::Reader jsonReader;
 
-         string httpStr(urlobj.getContent());
+        string httpStr(urlobj.getContent());
 
-         if (jsonReader.parse(httpStr, jsonData))
-         {
+        if (jsonReader.parse(httpStr, jsonData))
+        {
            cout << "Successfully parsed JSON data" << endl;
            cout << "\nJSON data received:" << endl;
            //cout << jsonData.toStyledString() << endl;
@@ -85,42 +85,48 @@ int main()
                         //cout << next_jsonData.toStyledString() << endl;
 
 
+                        try {
 
-                        for(int index2 = 0; index2 < next_jsonData.size(); ++index2) {
+                            for(int index2 = 0; index2 < next_jsonData.size(); ++index2) {
 
-                            cout << "ONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+                                    cout << "ONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
 
-                            BSONObjBuilder bil;
+                                    BSONObjBuilder bil;
 
-                            string datE = next_jsonData[index2]["date"].asString();
+                                    string datE = next_jsonData[index2]["date"].asString();
 
-                            struct tm tim;
+                                    struct tm tim;
 
-                            istringstream timE(datE);
+                                    istringstream timE(datE);
 
-                            timE >> get_time(&tim, "%Y-%m-%d");
+                                    timE >> get_time(&tim, "%Y-%m-%d");
 
-                            time_t time = mktime(&tim);
+                                    time_t time = mktime(&tim);
 
 
-                            bil.append("Close", next_jsonData[index2]["close"].asDouble());
-                            bil.append("High", next_jsonData[index2]["high"].asDouble());
-                            bil.append("Low", next_jsonData[index2]["low"].asDouble());
-                            bil.append("Open", next_jsonData[index2]["open"].asDouble());
-                            bil.appendTimeT("_id", time);
+                                    bil.append("Close", stod( next_jsonData[index2]["close"].asString() ));
+                                    bil.append("High", stod( next_jsonData[index2]["high"].asString() ));
+                                    bil.append("Low", stod( next_jsonData[index2]["low"].asString() ));
+                                    bil.append("Open", stod( next_jsonData[index2]["open"].asString() ));
+                                    //В джисоне уже приходит как строка, и поэтому asDouble не отрбатаывает корректно!
+                                    bil.appendTimeT("_id", time);
 
-                            BSONObj p = bil.obj();
+                                    BSONObj p = bil.obj();
 
-                            c.insert("stocks." + val_ofCode, p);
+                                    c.insert("stocks." + val_ofCode, p);
 
-                            cout << "count:" << c.count("stocks." + val_ofCode) << endl;
+                                    cout << "count:" << c.count("stocks." + val_ofCode) << endl;
 
-                            auto_ptr<DBClientCursor> cursor = c.query("stocks." + val_ofCode, BSONObj());
+                                    auto_ptr<DBClientCursor> cursor = c.query("stocks." + val_ofCode, BSONObj());
 
-                            while (cursor->more()) {
+                                    while (cursor->more()) {
 
-                               cout << cursor->next().toString() << endl;
-                            }
+                                        cout << cursor->next().toString() << endl;
+                                    }
+                                }
+                        } catch(const std::invalid_argument& ia) {
+
+                            cerr << ia.what() << endl;
                         }
                     }
                 }
