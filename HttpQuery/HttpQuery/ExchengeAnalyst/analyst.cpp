@@ -25,4 +25,13 @@ StrategyInfo exchangeAnalyst(double *ptr, size_t range_len, size_t breakout_len)
       objInf.bounce_to_brk = (bounce - brk_min) / brk_min; // How strong was the growth after the fall
       objInf.bounce_to_range = (bounce - range_min) / range_min; // How close are the price jumps to the min of the first part
       objInf.cur_to_bounce = (cur_price - bounce) / bounce; //  How far the price is today is different from the value of the increase
+
+
+       cout << objInf.brk_to_range << endl;
+       cout << objInf.bounce_to_brk << endl;
+       cout << objInf.bounce_to_range << endl;
+       cout << objInf.cur_to_bounce << endl;
+       // Test of apllications exchangeAnalyst
+
+
 }

@@ -11,6 +11,4 @@ struct StrategyInfo {
 
 StrategyInfo exchangeAnalyst(double *ptr, size_t range_len, size_t breakout_len);
 
-
-
 #endif // ANALYST_H

@@ -89,8 +89,6 @@ int main()
 
                             for(int index2 = 0; index2 < next_jsonData.size(); ++index2) {
 
-                                    cout << "ONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
-
                                     BSONObjBuilder bil;
 
                                     string datE = next_jsonData[index2]["date"].asString();
@@ -130,9 +128,7 @@ int main()
                         }
                     }
                 }
-
             }
-
          }
          else
          {
@@ -148,8 +144,6 @@ int main()
 
         cout << "Exception of downliad URL"<< erEx.what() << endl;
     }
-
-
 
     return 0;
 }

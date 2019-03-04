@@ -24,50 +24,23 @@ int main() {
 
     auto_ptr<DBClientCursor> cursor = c.query("stocks." + item, BSONObj());
 
-    vector<double> exchengClose;
-
         while (cursor->more()) {
 
-            // cout << "я тут" << endl;
             BSONObj p2 = cursor->next();
 
             //cout << "Open" << p2.getField("Open").number() << endl;
             //cout << "High" << p2.getField("High").number() << endl;
             //cout << "Low" << p2.getField("Low").number() << endl;
 
-            exchengClose.push_back(p2.getField("Close").number());
+            adjusted_close.push_back(p2.getField("Close").number());
 
-            for(int i =0; i < exchengClose.size(); i++) {
+            for(int i =0; i < adjusted_close.size(); i++) {
 
-                cout << exchengClose[i] << endl;
+                cout << "The Value Close of Exchange =" << adjusted_close[i] << endl;
             }
 
-            //cout << "Следующая дата" << endl;
             cout << p2.toString() << endl;
         }
-    }
-
-
-    //for(auto item : allCollectDB) {  cout << "count:" << c.count("stocks." + item) << endl; }
-
-
-    cout << "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" << endl;
-
-    cout << "count:" << c.count("us_stocks.ZYME.US") << endl;
-    auto_ptr<mongo::DBClientCursor> cursor = c.query("us_stocks.ZYME.US", mongo::BSONObj());
-    while (cursor->more()) {
-       auto p = cursor->next();
-       cout << p.toString() << endl;
-       mongo::BSONElement name =  p.getField("adjusted_close");
-       cout << name << endl;
-       adjusted_close.push_back(name.Double());
-    }
-
-    cout << adjusted_close.size() << endl;
-
-    for(int i=0; i<adjusted_close.size(); i++) {
-
-        cout << "Вектор =" << adjusted_close[i] << endl;
     }
 
     size_t range_Len = 10; // Len of first part
@@ -79,4 +52,5 @@ int main() {
     std::cout << "caught " << e.what() << std::endl;
   }
   return EXIT_SUCCESS;
+
 }

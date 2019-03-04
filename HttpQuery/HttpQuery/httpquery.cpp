@@ -44,13 +44,9 @@ void HttpQuery::downloadHttp() {
 
     long httpCode(0);
     // Hook up data handling function.
-cout << "11111111111111111111111111111111111111111111" << endl;
     // Run our HTTP GET command, capture the HTTP response code, and clean up.
-        curl_easy_perform(curl);
-        cout << "222222222222222222222222222222222222222222" << endl;
-        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-
-        cout << "33333333333333333333333333333333333333333333333333333" << endl;
+    curl_easy_perform(curl);
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
 
         if (httpCode != 200) {
 
