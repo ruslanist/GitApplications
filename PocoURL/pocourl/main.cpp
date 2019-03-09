@@ -21,7 +21,7 @@ int main(int argc, char** argv)
     Poco::Data::SQLite::Connector::registerConnector();
 
     // create a session
-    Session session("SQLite", "trafficUser2");
+    Session session("SQLite", "sample.db");
 
     // drop sample table, if it exists
     session << "DROP TABLE IF EXISTS Person", now;
