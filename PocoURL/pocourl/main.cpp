@@ -1,3 +1,38 @@
+#include <iostream>
+#include <string>
+
+#include <Poco/Data/MySQL/MySQLException.h>
+#include <Poco/Data/MySQL/Connector.h>
+#include <Poco/Data/SessionFactory.h>
+
+using namespace std;
+
+int main()
+{
+Poco::Data::MySQL::Connector::registerConnector();
+try
+{
+string str = "host=localhost;user=root;password=220295;compress=true;auto-reconnect=true";
+Poco::Data::Session test(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, str ));
+}
+catch (Poco::Data::MySQL::ConnectionException& e)
+{
+cout << e.what() << endl;
+return -1;
+}
+catch(Poco::Data::MySQL::StatementException& e)
+{
+cout << e.what() << endl;
+return -1;
+}
+
+return 0;
+}
+
+
+
+
+/*
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SQLite/Connector.h"
 #include <vector>
@@ -33,7 +68,7 @@ int main(int argc, char** argv)
     cout << "22222222222222" << endl;
 
     // create a session
-    Session session("host=localhost;port=3306;db=analystdb;user=root;password=220295;compress=true;auto-reconnect=true");
+    Session session("host=localhost;port=3306;db=trafficUser;user=root;password=220295;compress=true;auto-reconnect=true");
 
     cout << "3333333333333333" << endl;
 
@@ -97,3 +132,5 @@ cout << "999999999999999999999999999999999999999999999" << endl;
 
     return 0;
 }
+
+*/
