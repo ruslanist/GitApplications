@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <string>
 
@@ -12,7 +13,7 @@ int main()
 Poco::Data::MySQL::Connector::registerConnector();
 try
 {
-string str = "host=localhost;user=root;password=220295;compress=true;auto-reconnect=true";
+string str = "host=localhost;user=vasa;password=123;compress=true;auto-reconnect=true";
 Poco::Data::Session test(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, str ));
 }
 catch (Poco::Data::MySQL::ConnectionException& e)
@@ -28,11 +29,8 @@ return -1;
 
 return 0;
 }
+*/
 
-
-
-
-/*
 #include "Poco/Data/Session.h"
 #include "Poco/Data/SQLite/Connector.h"
 #include <vector>
@@ -67,12 +65,17 @@ int main(int argc, char** argv)
 
     cout << "22222222222222" << endl;
 
+    //string str = "host=localhost;user=vasa;password=123;compress=true;auto-reconnect=true";
+    //Poco::Data::Session test(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, str ));
+    string str = "host=localhost;port=3306;db=trafficUser;user=vasa;password=123;compress=true;auto-reconnect=true";
+
+
     // create a session
-    Session session("host=localhost;port=3306;db=trafficUser;user=root;password=220295;compress=true;auto-reconnect=true");
+    Session session(Poco::Data::SessionFactory::instance().create(Poco::Data::MySQL::Connector::KEY, str ));
 
     cout << "3333333333333333" << endl;
 
-    // drop sample table, if it exists
+    // drop sample table, if it exists c
     session << "DROP TABLE IF EXISTS Person", now;
 
     cout << "4444444444444" << endl;
@@ -133,4 +136,3 @@ cout << "999999999999999999999999999999999999999999999" << endl;
     return 0;
 }
 
-*/
