@@ -13,7 +13,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 # Find Poco package  1.8.1
-find_package(Poco REQUIRED COMPONENTS Foundation Util Net XML JSON SQLite)
+find_package(Poco REQUIRED COMPONENTS Foundation Util Net XML JSON)
 
 # no Poco_INCLUDE_DIRS, we have to set by hand 
 if(MSVC) # WIN32
@@ -34,5 +34,4 @@ include_directories(
 link_directories(${CMAKE_BINARY_DIR}) 
 
 add_executable(pocourl main.cpp)
-target_link_libraries(pocourl ${Poco_LIBRARIES})
-
+target_link_libraries(pocourl ${Poco_LIBRARIES} PocoDataMySQL PocoData PocoDataSQLite)
