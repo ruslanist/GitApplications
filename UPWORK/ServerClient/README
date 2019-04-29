@@ -1,0 +1,3 @@
+Собрать его можно в терменали при помощи команды:
+g++ server_client.cpp -pthread -std=c++11 -o name
+g++ server.cpp -pthread -std=c++11 -o Client
